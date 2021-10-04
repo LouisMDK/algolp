@@ -1,5 +1,7 @@
 package algolp
 
+// Recherche renvoie s'il contient un élément val et l'indice de la première occurence qu'il trouve par dichotomie 
+// si le tableau est vide ou ne contient pas l'élément, la fonction retourne -1 en indice
 func Recherche(tab []int, val int) (indice int, res bool){
 	if len(tab) == 0{
 		return -1, false
