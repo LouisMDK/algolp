@@ -1,4 +1,6 @@
 package algolp
+
+
 func TriInsertion(liste []int) ([]int) {
 	
 	var t2 []int
