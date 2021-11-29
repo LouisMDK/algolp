@@ -49,3 +49,37 @@ func TestDoubleListAppend(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestDoubleListTri(t *testing.T) {
+	var e DoubleLinkedList = GetEmptyDoubleList()
+	e = AppendDouble(2, e)
+	e = AppendDouble(-5, e)
+	e = AppendDouble(9, e)
+	e = AppendDouble(-96, e)
+	e = AppendDouble(9, e)
+	e = AppendDouble(100, e)
+	e = AppendDouble(200, e)
+	e = AppendDouble(150, e)
+	e = AppendDouble(4, e)
+	e = AppendDouble(0, e)
+	e = AppendDouble(0, e)
+	e = AppendDouble(4, e)
+	e = AppendDouble(288, e)
+	e = AppendDouble(28, e)
+	e = AppendDouble(7, e)
+	e = AppendDouble(-12, e)
+	e = AppendDouble(-898, e)
+	e = AppendDouble(-0, e)
+	e = AppendDouble(1, e)
+	e = AppendDouble(-1, e)
+
+	e = TriDoubleLinkedList(e)
+
+	var s DoubleLinkedList = e
+	for s.next.next != nil {
+		if s.v > s.next.v {
+			t.Fail()
+		}
+		s = s.Tail()
+	}
+}

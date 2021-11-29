@@ -42,4 +42,6 @@ func TestPopPile(t *testing.T) {
 	if x != 7 || p.element.v != 12 || p.element.next.v != 5 || p.Count() != 2 {
 		t.Fail()
 	}
+	p.Pop()
+	p.Pop()
 }

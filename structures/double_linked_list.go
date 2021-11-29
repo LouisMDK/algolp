@@ -38,3 +38,26 @@ func (l DoubleLinkedList) Affiche() string{
 func (l DoubleLinkedList) IsEmpty() bool{
 	return l.next == nil
 }
+
+func TriDoubleLinkedList(l DoubleLinkedList) DoubleLinkedList {
+	return parcours(l, GetEmptyDoubleList())
+}
+
+func parcours(l, l2 DoubleLinkedList) DoubleLinkedList {
+	if l.IsEmpty() {
+		return l2
+	}
+	l2 = insertion(l.Head(), l2)
+	return parcours(l.Tail(), l2)
+}
+
+func insertion(v int, l DoubleLinkedList) DoubleLinkedList {
+	if l.IsEmpty() {
+		return AppendDouble(v, GetEmptyDoubleList())
+	}
+	if l.Head() >= v {
+		return AppendDouble(v, l)
+	}
+	var fin DoubleLinkedList = insertion(v, l.Tail())
+	return AppendDouble(l.Head(), fin)
+}
