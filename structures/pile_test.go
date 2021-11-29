@@ -22,7 +22,7 @@ func TestPushPile(t *testing.T) {
 	p.Push(15)
 	if p.element.v != 15 || p.element.next.v != 5 {
 		t.Fail()
-	}	
+	}
 }
 
 func TestPopPile(t *testing.T) {
@@ -32,7 +32,7 @@ func TestPopPile(t *testing.T) {
 
 	var x int
 	x = p.Pop()
-	if x != 3 || p.element.v != 5{
+	if x != 3 || p.element.v != 5 {
 		t.Fail()
 	}
 	p.Push(12)
@@ -44,4 +44,15 @@ func TestPopPile(t *testing.T) {
 	}
 	p.Pop()
 	p.Pop()
+}
+
+func TestPileAffiche(t *testing.T) {
+	var p Pile = GetEmptyPile()
+	p.Push(3)
+	p.Push(7)
+	p.Push(-2)
+	p.Push(12)
+	if len(p.Affiche()) != 10 {
+		t.Fail()
+	}
 }

@@ -15,15 +15,15 @@ func (l LinkedList) Tail() LinkedList {
 	return *(l.tail)
 }
 
-func GetEmptyList() LinkedList{
+func GetEmptyList() LinkedList {
 	return LinkedList{tail: nil}
 }
 
-func Append(v int, l LinkedList) LinkedList{
+func Append(v int, l LinkedList) LinkedList {
 	return LinkedList{head: v, tail: &l}
 }
 
-func (l LinkedList) Affiche() string{
+func (l LinkedList) Affiche() string {
 	var s string
 	for !l.IsEmpty() {
 		s = fmt.Sprint(s, " ", l.Head())
@@ -32,6 +32,6 @@ func (l LinkedList) Affiche() string{
 	return s
 }
 
-func (l LinkedList) IsEmpty() bool{
+func (l LinkedList) IsEmpty() bool {
 	return l.tail == nil
 }

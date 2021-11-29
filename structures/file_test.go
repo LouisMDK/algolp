@@ -6,14 +6,14 @@ import (
 
 func TestFileVide(t *testing.T) {
 	var f File = GetEmptyFile()
-	if f.cont != 0 || f.element.prev != nil || f.element.next != nil || f.last == nil {
+	if f.Count() != 0 || f.element.prev != nil || f.element.next != nil || f.last == nil || !f.IsEmpty() {
 		t.Fail()
 	}
 }
 
 func TestFilePush(t *testing.T) {
 	var f File = GetEmptyFile()
-	
+
 	f.Push(3)
 	f.Push(4)
 	f.Push(5)
@@ -42,6 +42,17 @@ func TestFilePop2(t *testing.T) {
 	f.Push(32)
 	f.Pop()
 	if f.last.prev != nil || f.last.next != nil || f.element.prev != nil || f.element.next != nil {
+		t.Fail()
+	}
+}
+
+func TestFileAffiche(t *testing.T) {
+	var f File = GetEmptyFile()
+	f.Push(3)
+	f.Push(7)
+	f.Push(-2)
+	f.Push(12)
+	if len(f.Affiche()) != 10 {
 		t.Fail()
 	}
 }
