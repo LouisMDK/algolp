@@ -1,6 +1,6 @@
 package algolp
 
-import "fmt"
+import "strconv"
 
 type Arbre struct {
 	val int
@@ -20,22 +20,43 @@ func (a Arbre) Right() *Arbre {
 	return a.right
 }
 
-func Make(v int, A *Arbre, B *Arbre) Arbre {
-	return Arbre{val: v, left: A, right: B}
+func MakeArbre(v int, a, b *Arbre) Arbre {
+	return Arbre{val: v, left: a, right: b}
 }
 
 func GetEmptyArbre(v int) Arbre {
-	return Make(v, nil, nil)
+	return MakeArbre(v, nil, nil)
 }
 
 func (a *Arbre) IsEmpty() bool {
 	return a == nil
 }
 
-func (a *Arbre) Parcours() {
-	if !a.IsEmpty() {
-		a.left.Parcours()
-		fmt.Println(a.val)
-		a.right.Parcours()
+func (a *Arbre) Recherche(v int) bool {
+	if a.IsEmpty() {
+		return false
 	}
+	if a.Root() == v {
+		return true
+	}
+	l := a.left.Recherche(v)
+	r := a.right.Recherche(v)
+	return l || r
+}
+
+func (a *Arbre) Parcours() string {
+	if !a.IsEmpty() {
+		l := a.left.Parcours()
+		if len(l) != 0 {
+			l = l + " "
+		}
+		r := a.right.Parcours()
+		if len(r) != 0 {
+			r = " " + r
+		}
+		v := strconv.Itoa(a.val)
+		d := l + v + r
+		return d
+	}
+	return ""
 }
