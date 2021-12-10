@@ -1,6 +1,7 @@
 package algolp
 
 import "strconv"
+import "fmt"
 
 type Arbre struct {
 	val int
@@ -59,4 +60,53 @@ func (a *Arbre) Parcours() string {
 		return d
 	}
 	return ""
+}
+
+func (a *Arbre) Taille() int {
+	if a.IsEmpty() {
+		return 0
+	}
+	return 1 + a.left.Taille() + a.right.Taille()
+}
+
+func (a *Arbre) Parcours2() string {
+	if a.IsEmpty() {
+		return ""
+	}
+
+	var vals [][]int = [][]int{}
+	a.parcours2aux(0, &vals)
+	fmt.Println(vals)
+	var res string
+	for i := 0; i < a.Taille(); i++ {
+		for j := 0; j < len(vals); j++ {
+			if vals[j][0] == i {
+				if len(vals[j]) == 1 { // vide
+					res = res + " "
+				}else {
+					res = res + strconv.Itoa(vals[j][1])
+				}
+			}
+		}
+		res = res + "\n"
+	}
+	return res
+}
+
+func (a *Arbre) parcours2aux(niv int, tab *[][]int) {
+	c := []int{niv, a.val}
+	fmt.Println(c)
+	*tab = append(*tab, c)
+	if !a.left.IsEmpty() {
+		a.left.parcours2aux(niv + 1, tab)
+	}else{
+		*tab = append(*tab, []int{niv+1})
+	}
+	if !a.right.IsEmpty() {
+		a.right.parcours2aux(niv + 1, tab)
+	}else{
+		*tab = append(*tab, []int{niv+1})
+	}
+
+	
 }
